@@ -6,6 +6,7 @@ export const useAuthStore = create((set) => ({
   isSigningUp: false, 
   isLoggingIn: false, 
   isCheckingUser: false,
+  isLoggingOut: false,
 
   signUp: async (formData) => {
     set({ isSigningUp: true })
@@ -35,10 +36,13 @@ export const useAuthStore = create((set) => ({
 
   logout: async () => {
     try {
+      set({ isLoggingOut: true })
       await axiosInstance.get('/auth/logout')
       set({ user: null })
     } catch (error) {
       console.log("Error in logout", error)
+    } finally {
+      set({ isLoggingOut: false })
     }
   },
 

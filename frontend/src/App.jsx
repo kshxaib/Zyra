@@ -55,17 +55,7 @@ const App = () => {
       {/* Customize */}
       <Route
         path="/customize"
-        element={
-          user ? (
-            user.assistantImage && user.assistantName ? (
-              <Navigate to="/" />
-            ) : (
-              <Customize />
-            )
-          ) : (
-            <Navigate to="/signin" />
-          )
-        }
+        element={user ? <Customize /> : <Navigate to="/signin" />}
       />
     </Routes>
   );

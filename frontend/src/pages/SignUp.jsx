@@ -28,7 +28,7 @@ const SignUp = () => {
     e.preventDefault();
     if (!passwordsMatch) return;
     await signUp(form);
-    navigate('/');
+    navigate('/customize');
   };
 
   return (

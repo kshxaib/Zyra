@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { axiosInstance } from '../utils/axiosInstance.js'
+import { useAuthStore } from './authStore.js'
 
 export const useUserStore = create((set) => ({
     user: null,
@@ -9,7 +10,7 @@ export const useUserStore = create((set) => ({
         try {
             set({ isUpdating: true })
             const res = await axiosInstance.post('/user/update', data)
-            set({ user: res.data.user })
+            useAuthStore.setState({ user: res.data.user })
             return res.data
         } catch (error) {
             console.log("Error in updateAssistant", error)
